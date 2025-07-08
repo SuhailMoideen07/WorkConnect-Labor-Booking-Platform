@@ -22,6 +22,13 @@ WorkConnect is a web-based labor management system that allows users to hire ski
 
 ## 📜 License
 This project is for academic and personal use.
+## 🚀 Running the Backend
+
+1. Clone the repo  
+2. Navigate to the `backend` folder  
+3. Run `npm install`  
+4. Create a `.env` file using `.env.example`  
+5. Run `node server.js` or `npm start`
 
 ## 👨‍💻 Author
 **Suhail Moideen**  
