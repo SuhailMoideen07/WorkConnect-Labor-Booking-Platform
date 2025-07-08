@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - WorkConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .booking-card {
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .profile-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #4361ee, #3f37c9);">
+        <div class="container">
+            <a class="navbar-brand" href="userDashboard.html">WorkConnect</a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card booking-card mb-4">
+                    <div class="card-body p-5">
+                        <h2 class="text-center mb-4">Book Your Labour</h2>
+                        
+                        <div class="text-center mb-5">
+                            <div class="profile-placeholder" id="labourInitials"></div>
+                            <h3 id="labourName" class="mb-2"></h3>
+                            <p class="text-muted mb-1"><strong id="labourType"></strong></p>
+                            <p class="text-muted mb-2"><i class="fas fa-map-marker-alt"></i> <span id="labourLocation"></span></p>
+                            <p class="price-highlight" id="labourPrice"></p>
+                        </div>
+                        
+                        <form id="bookingForm">
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="bookingDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="bookingDate" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="bookingTime" class="form-label">Time</label>
+                                    <input type="time" class="form-control" id="bookingTime" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="duration" class="form-label">Duration (hours)</label>
+                                <select class="form-select" id="duration" required>
+                                    <option value="1">1 hour</option>
+                                    <option value="2">2 hours</option>
+                                    <option value="4">4 hours</option>
+                                    <option value="8">Full day (8 hrs)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="address" class="form-label">Work Address</label>
+                                <textarea class="form-control" id="address" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-calendar-check me-2"></i> Confirm Booking
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                id: params.get('id'),
+                name: params.get('name'),
+                type: params.get('type'),
+                location: params.get('location'),
+                price: params.get('price')
+            };
+        }
+
+        function populateDetails() {
+            const { name, type, location, price } = getUrlParams();
+            
+            document.getElementById("labourInitials").textContent = 
+                name.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.getElementById("labourName").textContent = name;
+            document.getElementById("labourType").textContent = type;
+            document.getElementById("labourLocation").textContent = location;
+            document.getElementById("labourPrice").textContent = `₹${price}/hr`;
+            document.getElementById("duration").dataset.basePrice = price;
+        }
+
+        document.getElementById("bookingForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const { id, name, type, location, price } = getUrlParams();
+            const booking = {
+                id: id,
+                name: name,
+                type: type,
+                location: location,
+                price: price,
+                date: document.getElementById("bookingDate").value,
+                time: document.getElementById("bookingTime").value,
+                duration: document.getElementById("duration").value,
+                address: document.getElementById("address").value,
+                status: "Confirmed"
+            };
+            
+            let bookings = JSON.parse(localStorage.getItem('userBookings')) || [];
+            bookings.push(booking);
+            localStorage.setItem('userBookings', JSON.stringify(bookings));
+            
+            window.location.href = "userBooking.html";
+        });
+
+        window.onload = function() {
+            populateDetails();
+            document.getElementById("bookingDate").min = new Date().toISOString().split("T")[0];
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

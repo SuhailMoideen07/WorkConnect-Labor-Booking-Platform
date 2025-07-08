@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - WorkConnect</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function redirectToSignup() {
+      let role = document.getElementById("signup-role").value;
+      if (role === "user") {
+        window.location.href = "user-signup.html";
+      } else if (role === "labour") {
+        window.location.href = "labour-signup.html";
+      }
+    }
+  </script>
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <h2>Sign Up</h2>
+    <label for="signup-role">Select your role:</label>
+    <select id="signup-role">
+      <option value="user">User</option>
+      <option value="labour">Labour</option>
+    </select>
+    <button onclick="redirectToSignup()">Proceed</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Labour Login</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="form-container">
+        <form id="labourLoginForm">
+            <h1>Labour Login</h1>
+            <label for="labourLoginEmail">Email</label>
+            <input type="email" id="labourLoginEmail" placeholder="Enter your email" required>
+
+            <label for="labourLoginPassword">Password</label>
+            <input type="password" id="labourLoginPassword" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('labourLoginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('labourLoginEmail').value;
+            const password = document.getElementById('labourLoginPassword').value;
+
+            // Log the data to ensure it's correct
+            console.log('Login Data:', { email, password });
+
+            try {
+                const response = await fetch('http://localhost:5000/api/labour/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })  // Ensure proper JSON formatting
+                });
+
+                const data = await response.json(); // Parse the JSON response
+                if (response.status === 200) {
+                    // On successful login, redirect to the dashboard
+                    alert('Login successful!');
+                    window.location.href = 'labourdashboard.html';  
+                } else {
+                    // Show error message if login fails
+                    alert(data.message || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error during login. Please try again later.');
+            }
+        });
+    </script>
+  </body>
+</html>

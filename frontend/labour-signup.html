@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labour Sign-Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 22px;
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #otherSkill {
+            display: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="labourSignupForm">
+            <h1>Labour Sign-Up</h1>
+            <label for="labourName">Name</label>
+            <input type="text" id="labourName" placeholder="Enter your name" required>
+
+            <label for="labourSkill">Skill/Profession</label>
+            <select id="labourSkill" required onchange="toggleOtherSkill()">
+                <option value="">Select a skill</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Painter">Painter</option>
+                <option value="Fieldworker">Fieldworker</option>
+                <option value="Mason">Mason</option>
+                <option value="Welder">Welder</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="text" id="otherSkill" placeholder="Enter your skill">
+
+            <label for="labourPlace">Place</label>
+            <input type="text" id="labourPlace" placeholder="Enter your place" required>
+
+            <label for="labourEmail">Email</label>
+            <input type="email" id="labourEmail" placeholder="Enter your email" required>
+
+            <label for="labourPhone">Phone Number</label>
+            <input type="tel" id="labourPhone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+
+            <label for="labourPassword">Password</label>
+            <input type="password" id="labourPassword" placeholder="Enter your password" required>
+
+            <label for="labourConfirmPassword">Confirm Password</label>
+            <input type="password" id="labourConfirmPassword" placeholder="Confirm your password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('labourSignupForm');
+            const skillSelect = document.getElementById('labourSkill');
+            const otherSkillInput = document.getElementById('otherSkill');
+
+            // Toggle Other Skill field visibility
+            function toggleOtherSkill() {
+                if (skillSelect.value === 'Other') {
+                    otherSkillInput.style.display = 'block';
+                    otherSkillInput.setAttribute('required', 'true'); 
+                } else {
+                    otherSkillInput.style.display = 'none';
+                    otherSkillInput.removeAttribute('required'); 
+                    otherSkillInput.value = ''; 
+                }
+            }
+
+            // Ensure we capture the selected skill correctly
+            function getSkillValue() {
+                if (skillSelect.value === 'Other') {
+                    const manualSkill = otherSkillInput.value.trim();
+                    if (!manualSkill) {
+                        alert('Please enter your skill');
+                        return null;
+                    }
+                    return manualSkill;
+                }
+                return skillSelect.value.trim();
+            }
+
+            // Form submission
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Get form data
+                const formData = {
+                    name: document.getElementById('labourName').value.trim(),
+                    email: document.getElementById('labourEmail').value.trim(),
+                    password: document.getElementById('labourPassword').value,
+                    phone: document.getElementById('labourPhone').value.trim(),
+                    place: document.getElementById('labourPlace').value.trim(),
+                    skill: getSkillValue(), 
+                };
+
+                if (!formData.skill) return; // Stop if skill is not valid or entered
+
+                // Validate passwords
+                if (formData.password !== document.getElementById('labourConfirmPassword').value) {
+                    alert("Passwords do not match");
+                    return;
+                }
+
+                console.log("Sending data to backend:", formData); // Debugging line
+
+                try {
+                    // Submit to backend
+                    const response = await fetch('http://localhost:5000/api/labour/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(result.message || 'Registration failed');
+                    }
+
+                    // Success
+                    alert('Registration successful!');
+                    window.location.href = 'labour-login.html';
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(error.message);
+                }
+            });
+
+            // Initialize event listener
+            skillSelect.addEventListener('change', toggleOtherSkill);
+            toggleOtherSkill();
+        });
+    </script>
+</

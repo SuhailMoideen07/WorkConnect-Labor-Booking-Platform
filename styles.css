@@ -1,0 +1,485 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Styles */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background: #0056b3;
+  padding: 10px 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+nav ul li a:hover {
+  background: #004494;
+}
+
+/* Header and Hero Section */
+header {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.hero-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.hero-section .btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.hero-section .btn-primary:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+/* Features Section */
+.features {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.features .feature-item {
+  display: inline-block;
+  width: 30%;
+  padding: 15px;
+  margin: 10px;
+}
+
+.features .feature-item img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.features .feature-item h3 {
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.features .feature-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Call-to-Action Section */
+.cta {
+  background: #007bff;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.cta h2 {
+  font-size: 2rem;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.cta .btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.cta .btn-secondary:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+/* Form Styles */
+.form-container {
+  max-width: 350px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #0056b3;
+}
+
+form label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+form input,
+form select,
+form button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background: #0056b3;
+}
+
+/* Help Section */
+.help-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.help-container h1 {
+  text-align: center;
+  color: #0056b3;
+  margin-bottom: 20px;
+}
+
+.help-container h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.help-container ul {
+  margin: 10px 0;
+  padding: 0 20px;
+}
+
+.help-container li {
+  margin: 5px 0;
+}
+
+.help-container p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.help-container p a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px 20px;
+  background: #333;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Auth Page Styles (Admin Login) */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.auth-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 350px;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #007bff;
+}
+
+.auth-container label {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Profile Section */
+.profile-card {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px solid #007bff;
+}
+
+.profile-card button {
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* User Info */
+.profile-info {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.profile-info h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.profile-info p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.profile-info button {
+  width: 100%;
+  padding: 12px;
+  font-weight: bold;
+}
+
+/* Password Change Section */
+.password-change {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.password-change h4 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.password-change input {
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  form input,
+  form select,
+  form button {
+    padding: 10px;
+  }
+}
+
+/* Profile Picture Circle Styling */
+.profile-img-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #007bff;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.profile-img-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Profile Picture Change Button */
+#changeProfilePicButton {
+  display: inline-block;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Hide file input */
+#profilePicInput {
+  display: none;
+}
+
+/* Button Hover Effect */
+#changeProfilePicButton:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Labour Card */
+.labour-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  background: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.labour-card:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.labour-card h5 {
+  margin-bottom: 5px;
+}
+
+.labour-card p {
+  margin: 3px 0;
+}
+
+/* Star Rating */
+.star-rating {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.star-rating i {
+  color: #f8ce0b;
+  margin-right: 5px;
+}
+
+/* Button Styles for Accepted and Rejected Booking */
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
